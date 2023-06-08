@@ -14,14 +14,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/',[\App\Http\Controllers\Layout::class, 'home']);
+
+Route::controller(\App\Http\Controllers\Layout::class)->group(function (){
+   Route::get('/layout/home', 'home');
+   Route::get('/layout/index', 'index');
 });
 
 Route::controller(Mhs::class)->group(function () {
     Route::get('/mhs/index', 'index');
     Route::get('/mhs/tambah', 'add');
+    Route::get('/mhs/datasoft', 'datasoft'); // datasoft yang terakhir merupakan nama function dicotroller
     Route::post('/mhs/simpan', 'save');  //method post untuk menyimpan data
     Route::get('/mhs/edit/{id}', 'edit');
     Route::put('/mhs/update', 'update');
-});
+    Route::delete('mhs/hapus/{id}', 'hapus');
+
+    Route::get('/mhs/restore/{id}', 'restore');
+    Route::delete('mhs/forceDelete/{id}', 'forceDelete');
+    });

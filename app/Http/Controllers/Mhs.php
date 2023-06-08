@@ -16,6 +16,13 @@ class Mhs extends Controller
         return view('mahasiswa.data', $data);
     }
 
+    public function datasoft(){
+        $data= [
+            'dataMhs' => Modelmhs::onlyTrashed()->get()
+        ];
+        return view('mahasiswa.datasoft', $data);
+    }
+
     public function add(){
         return view('mahasiswa.formtambah');
     }
@@ -28,6 +35,25 @@ class Mhs extends Controller
         $institusi = $r->institusi;
 
         try {
+            $validateData = $r->validate([
+                'nim' => 'required|unique:mahasiswa,nim',
+                'nama' => 'required',
+                'tlp' => 'required|numeric',
+                'alamat' => 'required',
+                'institusi' => 'required',
+
+            ],
+            [
+                'nim.required'=>'NIM tidak boleh kosong',
+                'nim.unique'=>'NIM sudah ada',
+                'nama.required'=>'Nama Mahasiswa tidak boleh kosong',
+                'tlp.required'=>'No HP tidak boleh kosong',
+                'alamat.required'=>'Alamat tidak boleh kosong',
+                'institusi.required'=>'Nama Institusi tidak boleh kosong',
+
+            ]);
+
+
             $mhs = new Modelmhs();
             $mhs->nim = $nim;
             $mhs->namamhs = $nama;
@@ -38,7 +64,7 @@ class Mhs extends Controller
 
             //echo "Data Berhasil Tersimpan";
             $r->session()->flash("msg", "Data Mahasiswa $nama behasil Tersimpan!");
-            return redirect('/mhs/tambah');
+            return redirect('/mhs/index');
         }catch (Throwable $e){
             echo $e;
         }
@@ -82,5 +108,20 @@ class Mhs extends Controller
         }catch (Throwable $e){
             echo $e;
         }
+    }
+
+    public function hapus($id){
+        Modelmhs::find($id)->delete();
+        return redirect()->back();
+    }
+
+    public function restore($id){
+        Modelmhs::withTrashed()->find($id)->restore();
+        return redirect()->back();
+    }
+
+    public function forceDelete($id){
+        Modelmhs::onlyTrashed()->find($id)->forceDelete();
+        return redirect()->back();
     }
 }
