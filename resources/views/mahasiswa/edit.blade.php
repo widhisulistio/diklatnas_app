@@ -48,6 +48,13 @@
                                     <input type="text" class="form-control" id="nama" name="nama" value="{{ $nama }}">
                                 </div>
                                 <div class="form-group">
+                                    <label for="jk">Jenis Kelamin</label>
+                                    <select id="selectjk" name="jk" class="form-control">
+                                        <option value="L"{{$jk =="L" ? 'selected':''}}>Laki-laki</option>
+                                        <option value="P"{{$jk =="P" ? 'selected':''}}>Perempuan</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="tlp">No Handphone</label>
                                     <input type="text" class="form-control" id="tlp" name="tlp" value="{{ $tlp }}">
                                 </div>
@@ -59,6 +66,22 @@
                                     <label for="tlp">Asal Institusi</label>
                                     <input type="text" class="form-control" id="institusi" name="institusi" value="{{ $institusi }}">
                                 </div>
+                                <div class="form-group">
+                                    <label for="jurusan">Asal Institusi</label>
+                                    <input type="text" class="form-control" id="jurusan" name="jurusan" value="{{ $jurusan }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="jenjang">Jenjang</label>
+                                    <select id="selectjenjang" name="jenjang" class="form-control">
+                                        <option value="DI"{{$jenjang =="DI" ? 'selected':''}}>Diploma I</option>
+                                        <option value="DII"{{$jenjang =="DII" ? 'selected':''}}>Diploma II</option>
+                                        <option value="DIII"{{$jenjang =="DIII" ? 'selected':''}}>Diploma III</option>
+                                        <option value="DIV"{{$jenjang =="DIV" ? 'selected':''}}>Sarjana Terapan</option>
+                                        <option value="S1"{{$jenjang =="S1" ? 'selected':''}}>Sarjana</option>
+                                        <option value="S2"{{$jenjang =="S2" ? 'selected':''}}>Magister</option>
+                                        <option value="S3"{{$jenjang =="S3" ? 'selected':''}}>Doktoral</option>
+                                    </select>
+                                </div>
 
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-success">Update</button>
@@ -67,9 +90,12 @@
                     </div>
                 </div>
             </div>
-            <!-- /.card-body -->
-
-            <!-- /.card-footer-->
+            <script>
+                $(document).read(function (){
+                    $("#selectjk").select2();
+                    $("#selectjenjang").select2();
+                });
+            </script>
         </div>
         <!-- /.card -->
 

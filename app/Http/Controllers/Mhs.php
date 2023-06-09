@@ -30,26 +30,36 @@ class Mhs extends Controller
     public function save(Request $r){
         $nim = $r->nim;
         $nama = $r->nama;
+        $jk = $r->jk;
         $tlp = $r->tlp;
         $alamat = $r->alamat;
         $institusi = $r->institusi;
+        $jurusan = $r->jurusan;
+        $jenjang= $r->jenjang;
+
 
         try {
             $validateData = $r->validate([
                 'nim' => 'required|unique:mahasiswa,nim',
                 'nama' => 'required',
+                'jk' =>'required',
                 'tlp' => 'required|numeric',
                 'alamat' => 'required',
                 'institusi' => 'required',
+                'jurusan' => 'required',
+                'jenjang' => 'required',
 
             ],
             [
                 'nim.required'=>'NIM tidak boleh kosong',
                 'nim.unique'=>'NIM sudah ada',
                 'nama.required'=>'Nama Mahasiswa tidak boleh kosong',
+                'jk.required'=>'Jenis Kelamin Mahasiswa tidak boleh kosong',
                 'tlp.required'=>'No HP tidak boleh kosong',
                 'alamat.required'=>'Alamat tidak boleh kosong',
                 'institusi.required'=>'Nama Institusi tidak boleh kosong',
+                'jurusan.required'=>'Jurusan tidak boleh kosong',
+                'jenjang.required'=>'Jenjang tidak boleh kosong',
 
             ]);
 
@@ -57,9 +67,12 @@ class Mhs extends Controller
             $mhs = new Modelmhs();
             $mhs->nim = $nim;
             $mhs->namamhs = $nama;
+            $mhs->jk = $jk;
             $mhs->tlpmhs = $tlp;
             $mhs->alamatmhs = $alamat;
             $mhs->institusimhs = $institusi;
+            $mhs->jurusanmhs = $jurusan;
+            $mhs->jenjangmhs = $jenjang;
             $mhs->save();
 
             //echo "Data Berhasil Tersimpan";
@@ -76,9 +89,12 @@ class Mhs extends Controller
             'id' => $id,
             'nim' => $mhs->nim,
             'nama' => $mhs->namamhs,
+            'jk'=> $mhs->jk,
             'tlp' => $mhs->tlpmhs,
             'alamat' => $mhs->alamatmhs,
-            'institusi' => $mhs->institusimhs
+            'institusi' => $mhs->institusimhs,
+            'jurusan' => $mhs->jurusanmhs,
+            'jenjang' => $mhs->jenjangmhs
         ];
         return view('mahasiswa.edit', $data);
     }
@@ -87,9 +103,13 @@ class Mhs extends Controller
         $id = $r->id;
         $nim = $r->nim;
         $nama = $r->nama;
+        $jk = $r->jk;
         $tlp = $r->tlp;
         $alamat = $r->alamat;
         $institusi = $r->institusi;
+        $jurusan = $r->jurusan;
+        $jenjang = $r->jenjang;
+
         ///dd($r);
         //echo $id;
         //exit();
@@ -97,9 +117,12 @@ class Mhs extends Controller
             $mhs = Modelmhs::find($id);
             $mhs->nim = $nim;
             $mhs->namamhs = $nama;
+            $mhs->jk = $jk;
             $mhs->tlpmhs = $tlp;
             $mhs->alamatmhs = $alamat;
             $mhs->institusimhs = $institusi;
+            $mhs->jurusanmhs = $jurusan;
+            $mhs->jenjangmhs = $jenjang;
             $mhs->save();
 
             //echo "Data Berhasil Tersimpan";

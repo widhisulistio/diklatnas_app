@@ -34,15 +34,18 @@
                         {{ session('msg') }}
                     </p>
                 @endif
-                <table class="table table-sm table-bordered table-striped" >
+                <table class="table table-sm table-bordered table-striped"  >
                     <thead>
                     <tr>
                         <th>No</th>
                         <th>Nim</th>
                         <th>Nama</th>
+                        <th>JK</th>
                         <th>No HP</th>
                         <th>Alamat</th>
-                        <th>Asal Institusi</th>
+                        <th>Institusi</th>
+                        <th>Jurusan</th>
+                        <th>Jenjang</th>
                         <th>Aksi</th>
                     </tr>
 
@@ -53,9 +56,12 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{$d->nim}}</td>
                             <td>{{$d->namamhs}}</td>
+                            <td>{{$d->jk }}</td>
                             <td>{{$d->tlpmhs}}</td>
                             <td>{{$d->alamatmhs}}</td>
                             <td>{{$d->institusimhs}}</td>
+                            <td>{{$d->jurusanmhs}}</td>
+                            <td>{{$d->jenjangmhs}}</td>
                             <td>
                                 <button class="btn btn-sm btn-warning" type="button" onclick="window.location='/mhs/edit/{{ $d->id }}'">
                                     Edit

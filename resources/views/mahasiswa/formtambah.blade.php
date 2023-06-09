@@ -53,6 +53,13 @@
                                     <input type="text" class="form-control" id="nama" placeholder="Nama Mahasiswa" name="nama" value="{{ old('nama') }}">
                                 </div>
                                 <div class="form-group">
+                                    <label for="jk">Jenis Kelamin</label>
+                                    <select id="selectjk" name="jk" class="form-control">
+                                        <option value="L">Laki-laki</option>
+                                        <option value="P">Perempuan</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="tlp">No Handphone</label>
                                     <input type="text" class="form-control" id="tlp" placeholder="No Handphone" name="tlp" value="{{ old('tlp') }}">
                                 </div>
@@ -61,8 +68,24 @@
                                     <textarea class="form-control" rows="3" placeholder="Alamat Rumah" name="alamat">{{ old('alamat') }}</textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="tlp">Asal Institusi</label>
+                                    <label for="institusi">Asal Institusi</label>
                                     <input type="text" class="form-control" id="institusi" placeholder="Asal Institusi" name="institusi" value="{{ old('institusi') }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="jurusan">Jurusan</label>
+                                    <input type="text" class="form-control" id="jurusan" placeholder="Asal Institusi" name="jurusan" value="{{ old('jurusan') }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="jenjang">Jenjang</label>
+                                    <select id="selectjenjang" name="jenjang" class="form-control">
+                                        <option value="DI">Diploma I</option>
+                                        <option value="DII">Diploma II</option>
+                                        <option value="DIII">Diploma III</option>
+                                        <option value="DIV">Sarjana Terapan</option>
+                                        <option value="S1">Sarjana</option>
+                                        <option value="S2">Magister</option>
+                                        <option value="S3">Doktoral</option>
+                                    </select>
                                 </div>
 
                                 <div class="card-footer">
@@ -72,11 +95,14 @@
                     </div>
                 </div>
             </div>
-            <!-- /.card-body -->
-
-            <!-- /.card-footer-->
+            <script>
+                $(document).read(function (){
+                    $("#selectjk").select2();
+                    $("#selectjenjang").select2();
+                });
+            </script>
         </div>
-        <!-- /.card -->
+
 
     </section>
 
