@@ -8,12 +8,27 @@ use Illuminate\Http\Request;
 
 class Mhs extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data= [
-          'dataMhs' => Modelmhs::all()
-        ];
-        return view('mahasiswa.data', $data);
+        $cari = $request->query('cari');
+
+        if (!empty($cari)){
+            $dataMahasiswa = Modelmhs::sortable()
+                -> where('mahasiswa.nim','like','%'.$cari.'%')
+                -> orwhere('mahasiswa.namamhs','like','%'.$cari.'%')
+                ->paginate(10)->onEachSide(2)->fragment('pesertadiklat');
+        }else{
+            $dataMahasiswa = Modelmhs::sortable()->paginate(10)->onEachSide(2)->fragment('pesertadiklat');
+        }
+
+//        $data= [
+//          'dataMhs' => Modelmhs::sortable()->paginate(10)->onEachSide(2)->fragment('pesertadiklat'),
+//        ];
+//        perintah with itu sama juga membawa variabel dataMahasiwa
+        return view('mahasiswa.data')->with([
+            'dataMhs' => $dataMahasiswa,
+            'cari' => $cari,
+        ]);
     }
 
     public function datasoft(){
@@ -48,6 +63,7 @@ class Mhs extends Controller
                 'institusi' => 'required',
                 'jurusan' => 'required',
                 'jenjang' => 'required',
+                'foto' => 'mimes:jpg,png,jpeg|image|max:1024',
 
             ],
             [
@@ -63,6 +79,12 @@ class Mhs extends Controller
 
             ]);
 
+            if ($r->hasFile('foto')){
+                $path = $r->file('foto')->store('uploads');
+            }else{
+                $path='';
+            }
+
 
             $mhs = new Modelmhs();
             $mhs->nim = $nim;
@@ -73,6 +95,7 @@ class Mhs extends Controller
             $mhs->institusimhs = $institusi;
             $mhs->jurusanmhs = $jurusan;
             $mhs->jenjangmhs = $jenjang;
+            $mhs->fotomhs = $path;
             $mhs->save();
 
             //echo "Data Berhasil Tersimpan";
