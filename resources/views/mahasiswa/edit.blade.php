@@ -34,7 +34,7 @@
                 <div class="col-md-12">
 
                     <div class="card card-primary">
-                        <form method="POST" action="{{ '/mhs/update' }}">
+                        <form enctype="multipart/form-data" method="POST" action="{{ '/mhs/update' }}">
                             @csrf
                             @method('PUT')
                             <div class="card-body">
@@ -48,7 +48,7 @@
                                     <input type="text" class="form-control" id="nama" name="nama" value="{{ $nama }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="jk">Jenis Kelamin</label>
+                                    <label for="selectjk">Jenis Kelamin</label>
                                     <select id="selectjk" name="jk" class="form-control">
                                         <option value="L"{{$jk =="L" ? 'selected':''}}>Laki-laki</option>
                                         <option value="P"{{$jk =="P" ? 'selected':''}}>Perempuan</option>
@@ -59,11 +59,11 @@
                                     <input type="text" class="form-control" id="tlp" name="tlp" value="{{ $tlp }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Alamat</label>
-                                    <textarea class="form-control" rows="3"  name="alamat">{{ $alamat }}</textarea>
+                                    <label for="alamat">Alamat</label>
+                                    <textarea class="form-control" id="alamat" rows="3"  name="alamat">{{ $alamat }}</textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="tlp">Asal Institusi</label>
+                                    <label for="institusi">Asal Institusi</label>
                                     <input type="text" class="form-control" id="institusi" name="institusi" value="{{ $institusi }}">
                                 </div>
                                 <div class="form-group">
@@ -71,7 +71,7 @@
                                     <input type="text" class="form-control" id="jurusan" name="jurusan" value="{{ $jurusan }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="jenjang">Jenjang</label>
+                                    <label for="selectjenjang">Jenjang</label>
                                     <select id="selectjenjang" name="jenjang" class="form-control">
                                         <option value="DI"{{$jenjang =="DI" ? 'selected':''}}>Diploma I</option>
                                         <option value="DII"{{$jenjang =="DII" ? 'selected':''}}>Diploma II</option>
@@ -82,10 +82,30 @@
                                         <option value="S3"{{$jenjang =="S3" ? 'selected':''}}>Doktoral</option>
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label for="foto">Foto</label>
+                                    <div id="foto" name="foto">
+                                        @if($foto)
+                                            <img src="{{ asset('storage/'.$foto) }}" class="img-thumbnail" style="width: 50%">
+                                        @else
+                                            <span class="badge badge-danger"> Belum Ada Foto</span>
+                                        @endif
+                                            <input type="file" class="form-control" @error('foto') is-invalid @enderror" accept="image/*" name="foto">
+                                            @error('foto')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                    </div>
 
+{{--                                    <input type="text" class="form-control" id="jurusan" name="jurusan" value="{{ $jurusan }}">--}}
+                                </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-success">Update</button>
                                 </div>
+
+
+                            </div>
                         </form>
                     </div>
                 </div>

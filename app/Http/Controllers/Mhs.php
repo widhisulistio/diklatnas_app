@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Models\Modelmhs;
 use Illuminate\Http\Request;
@@ -53,7 +54,7 @@ class Mhs extends Controller
         $jenjang= $r->jenjang;
 
 
-        try {
+
             $validateData = $r->validate([
                 'nim' => 'required|unique:mahasiswa,nim',
                 'nama' => 'required',
@@ -78,9 +79,10 @@ class Mhs extends Controller
                 'jenjang.required'=>'Jenjang tidak boleh kosong',
 
             ]);
-
+//            perintah untuk menyimpan foto
+//                storeAs('uploads',time().'-'.$nim.'.'.$r->file('foto')->extension()) --perintah untuk memberi nama file
             if ($r->hasFile('foto')){
-                $path = $r->file('foto')->store('uploads');
+                $path = $r->file('foto')->storeAs('uploads',time().'-'.$nim.'.'.$r->file('foto')->extension());
             }else{
                 $path='';
             }
@@ -101,9 +103,7 @@ class Mhs extends Controller
             //echo "Data Berhasil Tersimpan";
             $r->session()->flash("msg", "Data Mahasiswa $nama behasil Tersimpan!");
             return redirect('/mhs/index');
-        }catch (Throwable $e){
-            echo $e;
-        }
+
     }
 
     public function edit($id){
@@ -117,7 +117,8 @@ class Mhs extends Controller
             'alamat' => $mhs->alamatmhs,
             'institusi' => $mhs->institusimhs,
             'jurusan' => $mhs->jurusanmhs,
-            'jenjang' => $mhs->jenjangmhs
+            'jenjang' => $mhs->jenjangmhs,
+            'foto' => $mhs->fotomhs
         ];
         return view('mahasiswa.edit', $data);
     }
@@ -133,11 +134,26 @@ class Mhs extends Controller
         $jurusan = $r->jurusan;
         $jenjang = $r->jenjang;
 
+        if ($r->hasFile('foto')){
+            $path = $r->file('foto')->storeAs('uploads',time().'-'.$nim.'.'.$r->file('foto')->extension());
+        }else{
+            $path='';
+        }
+
+        $validateData = $r->validate([
+            'foto' => 'mimes:jpg,png,jpeg|image|max:1024',
+            ]);
         ///dd($r);
         //echo $id;
         //exit();
-        try {
+
             $mhs = Modelmhs::find($id);
+            $pathFoto = $mhs->fotomhs;
+
+            if ($pathFoto !=null || $pathFoto!=''){
+                Storage::delete($pathFoto);
+            }
+
             $mhs->nim = $nim;
             $mhs->namamhs = $nama;
             $mhs->jk = $jk;
@@ -146,14 +162,13 @@ class Mhs extends Controller
             $mhs->institusimhs = $institusi;
             $mhs->jurusanmhs = $jurusan;
             $mhs->jenjangmhs = $jenjang;
+            $mhs->fotomhs = $path;
             $mhs->save();
 
             //echo "Data Berhasil Tersimpan";
             $r->session()->flash("msg", "Data Mahasiswa $nama behasil diupdate!");
             return redirect('/mhs/index');
-        }catch (Throwable $e){
-            echo $e;
-        }
+
     }
 
     public function hapus($id){
@@ -167,6 +182,13 @@ class Mhs extends Controller
     }
 
     public function forceDelete($id){
+        $mhs = Modelmhs::withTrashed()->find($id);
+        $pathFoto = $mhs->fotomhs;
+
+        if ($pathFoto != null || $pathFoto !=''){
+            Storage::delete($pathFoto);
+        }
+
         Modelmhs::onlyTrashed()->find($id)->forceDelete();
         return redirect()->back();
     }
