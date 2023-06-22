@@ -20,7 +20,7 @@
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
-            <h1><strong>Login Diklat APP</strong></h1>
+            <h1><strong>Login Diklat App</strong></h1>
         </div>
         <div class="card-body">
             <p class="login-box-msg">Sign in to start your session</p>
