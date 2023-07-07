@@ -7,7 +7,7 @@ with font-awesome or any other icon font library -->
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                     Dashboard
-                    <i class="right fas fa-angle-left"></i>
+                    <i class="right fas fa-angle-right"></i>
                 </p>
             </a>
         </li>
@@ -16,7 +16,16 @@ with font-awesome or any other icon font library -->
                 <i class="nav-icon fas fa-users"></i>
                 <p>
                     Mahasiswa
-                    <i class="right fas fa-angle-left"></i>
+                    <i class="right fas fa-angle-right"></i>
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ url('surat/index') }}" class="nav-link">
+                <i class="nav-icon fas fa-envelope-open-text"></i>
+                <p>
+                    Persuratan
+                    <i class="right fas fa-angle-right"></i>
                 </p>
             </a>
         </li>

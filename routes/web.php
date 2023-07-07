@@ -42,6 +42,20 @@ Route::group(['middleware' =>['auth']], function (){
            Route::delete('mhs/forceDelete/{id}', 'forceDelete');
        });
    });
+    Route::group(['middleware' =>['cekUserLogin:1']], function (){
+        Route::controller(\App\Http\Controllers\Surat::class)->group(function () {
+            Route::get('/surat/index', 'index');
+//            Route::get('/mhs/tambah', 'add');
+//            Route::get('/mhs/datasoft', 'datasoft'); // datasoft yang terakhir merupakan nama function dicotroller
+//            Route::post('/mhs/simpan', 'save');  //method post untuk menyimpan data
+//            Route::get('/mhs/edit/{id}', 'edit');
+//            Route::put('/mhs/update', 'update');
+//            Route::delete('mhs/hapus/{id}', 'hapus');
+//
+//            Route::get('/mhs/restore/{id}', 'restore');
+//            Route::delete('mhs/forceDelete/{id}', 'forceDelete');
+        });
+    });
 });
 
 Route::controller(\App\Http\Controllers\Layout::class)->group(function (){
