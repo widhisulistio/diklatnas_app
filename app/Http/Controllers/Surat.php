@@ -105,7 +105,7 @@ class Surat extends Controller
 
     }
 
-    public function edit($id){
+    public function stupen($id){
         $mhs = ModelSurat::find($id);
         $data = [
             'id' => $id,
@@ -119,7 +119,8 @@ class Surat extends Controller
             'jenjang' => $mhs->jenjangmhs,
             'foto' => $mhs->fotomhs
         ];
-        return view('mahasiswa.edit', $data);
+        return view('mahasiswa.stupen', $data);
+
     }
 
     public function update (Request $r){ //nama variabel $itu terserah mau dikasih nama apa

@@ -45,6 +45,7 @@ Route::group(['middleware' =>['auth']], function (){
     Route::group(['middleware' =>['cekUserLogin:1']], function (){
         Route::controller(\App\Http\Controllers\Surat::class)->group(function () {
             Route::get('/surat/index', 'index');
+            Route::get('/surat/stupen/{id}', 'stupen');
 //            Route::get('/mhs/tambah', 'add');
 //            Route::get('/mhs/datasoft', 'datasoft'); // datasoft yang terakhir merupakan nama function dicotroller
 //            Route::post('/mhs/simpan', 'save');  //method post untuk menyimpan data

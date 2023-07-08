@@ -82,7 +82,7 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
                                         <div class="dropdown-divider"></div>
-                                        <a href="#" class="dropdown-item">
+                                        <a href="/surat/stupen/{{ $d->id }}" class="dropdown-item">
                                             <i class="fas fa-pencil-alt"></i> Studi Pendahuluan
                                         </a>
                                         <div class="dropdown-divider"></div>
