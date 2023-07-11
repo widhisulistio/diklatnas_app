@@ -29,5 +29,14 @@ with font-awesome or any other icon font library -->
                 </p>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="{{ url('stupen/index') }}" class="nav-link">
+                <i class="nav-icon fas fa-envelope-open-text"></i>
+                <p>
+                    Data Stupen
+                    <i class="right fas fa-angle-right"></i>
+                </p>
+            </a>
+        </li>
     </ul>
 </nav>

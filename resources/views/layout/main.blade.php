@@ -46,9 +46,9 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ asset('/') }}index3.html" class="brand-link">
+    <a href="#" class="brand-link">
       <img src="{{ asset('/') }}dist/img/kp.png" alt="Logo Kulon Progo" class="brand-image elevation-5" style="opacity: .8">
-      <span class="brand-text font-weight-light">Aplikasi Diklat</span>
+      <span class="brand-text font-weight-light">Si-PANDU</span>
     </a>
 
     <!-- Sidebar -->

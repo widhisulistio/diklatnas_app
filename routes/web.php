@@ -46,15 +46,12 @@ Route::group(['middleware' =>['auth']], function (){
         Route::controller(\App\Http\Controllers\Surat::class)->group(function () {
             Route::get('/surat/index', 'index');
             Route::get('/surat/stupen/{id}', 'stupen');
-//            Route::get('/mhs/tambah', 'add');
-//            Route::get('/mhs/datasoft', 'datasoft'); // datasoft yang terakhir merupakan nama function dicotroller
-//            Route::post('/mhs/simpan', 'save');  //method post untuk menyimpan data
-//            Route::get('/mhs/edit/{id}', 'edit');
-//            Route::put('/mhs/update', 'update');
-//            Route::delete('mhs/hapus/{id}', 'hapus');
-//
-//            Route::get('/mhs/restore/{id}', 'restore');
-//            Route::delete('mhs/forceDelete/{id}', 'forceDelete');
+            Route::post('/surat/simpan', 'simpanstupen');  //method post untuk menyimpan data
+        });
+    });
+    Route::group(['middleware' =>['cekUserLogin:1']], function (){
+        Route::controller(\App\Http\Controllers\Stupen::class)->group(function () {
+            Route::get('/stupen/index', 'index');
         });
     });
 });

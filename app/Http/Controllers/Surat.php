@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ModelStupen;
 use Illuminate\Support\Facades\Storage;
 use App\Models\ModelSurat;
+use App\Models\Modelmhs;
 use Illuminate\Http\Request;
 
 class Surat extends Controller
@@ -31,81 +33,93 @@ class Surat extends Controller
         ]);
     }
 
-    public function datasoft(){
-        $data= [
-            'dataMhs' => ModelSurat::onlyTrashed()->get()
-        ];
-        return view('mahasiswa.datasoft', $data);
-    }
+//    public function datasoft(){
+//        $data= [
+//            'dataMhs' => ModelSurat::onlyTrashed()->get()
+//        ];
+//        return view('mahasiswa.datasoft', $data);
+//    }
 
-    public function add(){
-        return view('mahasiswa.formtambah');
-    }
 
-    public function save(Request $r){
+
+    public function simpanstupen(Request $r){
+        $nomor = $r->nomor;
+        $sifat = $r->sifat;
+        $lampiran = $r->lampiran;
+        $yth = $r->yth;
+        $hal = $r->hal;
         $nim = $r->nim;
-        $nama = $r->nama;
-        $jk = $r->jk;
-        $tlp = $r->tlp;
-        $alamat = $r->alamat;
-        $institusi = $r->institusi;
-        $jurusan = $r->jurusan;
-        $jenjang= $r->jenjang;
-
+        $kegiatan = $r-> kegiatan;
+        $judul = $r->judul;
+        $tanggal = $r->tanggal;
 
 
         $validateData = $r->validate([
-            'nim' => 'required|unique:mahasiswa,nim',
-            'nama' => 'required',
-            'jk' =>'required',
-            'tlp' => 'required|numeric',
-            'alamat' => 'required',
-            'institusi' => 'required',
-            'jurusan' => 'required',
-            'jenjang' => 'required',
-            'foto' => 'mimes:jpg,png,jpeg|image|max:1024',
+            'nomor' => 'required|',
+            'sifat' => 'required',
+            'lampiran' =>'required',
+            'yth' => 'required',
+            'hal' => 'required',
+            'kegiatan' => 'required',
+            'judul' => 'required',
+            'tanggal' => 'required',
 
         ],
             [
-                'nim.required'=>'NIM tidak boleh kosong',
-                'nim.unique'=>'NIM sudah ada',
-                'nama.required'=>'Nama Mahasiswa tidak boleh kosong',
-                'jk.required'=>'Jenis Kelamin Mahasiswa tidak boleh kosong',
-                'tlp.required'=>'No HP tidak boleh kosong',
-                'alamat.required'=>'Alamat tidak boleh kosong',
-                'institusi.required'=>'Nama Institusi tidak boleh kosong',
-                'jurusan.required'=>'Jurusan tidak boleh kosong',
-                'jenjang.required'=>'Jenjang tidak boleh kosong',
+                'sifat.required'=>'Sifat Surat tidak boleh kosong',
+                'lampiran.required'=>'Lapiran tidak boleh kosong',
+                'yth.required'=>'Tujuan surat tidak boleh kosong',
+                'hal.required'=>'Prihal surat tidak boleh kosong',
+                'kegiatan.required'=>'Jenis Kegaitan tidak boleh kosong',
+                'judul.required'=>'Judul Penelitian tidak boleh kosong',
+                'tanggal.required'=>'Tanggal surat tidak boleh kosong',
+
 
             ]);
 //            perintah untuk menyimpan foto
 //                storeAs('uploads',time().'-'.$nim.'.'.$r->file('foto')->extension()) --perintah untuk memberi nama file
-        if ($r->hasFile('foto')){
-            $path = $r->file('foto')->storeAs('uploads',time().'-'.$nim.'.'.$r->file('foto')->extension());
-        }else{
-            $path='';
-        }
+//        if ($r->hasFile('foto')){
+//            $path = $r->file('foto')->storeAs('uploads',time().'-'.$nim.'.'.$r->file('foto')->extension());
+//        }else{
+//            $path='';
+//        }
 
-
-        $mhs = new ModelSurat();
-        $mhs->nim = $nim;
-        $mhs->namamhs = $nama;
-        $mhs->jk = $jk;
-        $mhs->tlpmhs = $tlp;
-        $mhs->alamatmhs = $alamat;
-        $mhs->institusimhs = $institusi;
-        $mhs->jurusanmhs = $jurusan;
-        $mhs->jenjangmhs = $jenjang;
-        $mhs->fotomhs = $path;
-        $mhs->save();
+        $stupen = new ModelStupen();
+        $stupen->nomor = $nomor;
+        $stupen->sifat= $sifat;
+        $stupen->lampiran = $lampiran;
+        $stupen->yth = $yth;
+        $stupen->hal = $hal;
+        $stupen->nim = $nim;
+        $stupen->kegiatan = $kegiatan;
+        $stupen->judul = $judul;
+        $stupen->tanggal = $tanggal;
+        $stupen->save();
 
         //echo "Data Berhasil Tersimpan";
-        $r->session()->flash("msg", "Data Mahasiswa $nama behasil Tersimpan!");
-        return redirect('/mhs/index');
+        $r->session()->flash("msg", "Data Mahasiswa $nim behasil Tersimpan!");
+        return redirect('/surat/index');
 
     }
 
     public function stupen($id){
+        $mhs = ModelSurat::find($id);
+        $data = [
+            'id' => $id,
+            'nim' => $mhs->nim,
+            'nama' => $mhs->namamhs,
+            'jk'=> $mhs->jk,
+            'tlp' => $mhs->tlpmhs,
+            'alamat' => $mhs->alamatmhs,
+            'institusi' => $mhs->institusimhs,
+            'jurusan' => $mhs->jurusanmhs,
+            'jenjang' => $mhs->jenjangmhs,
+            'foto' => $mhs->fotomhs
+        ];
+        return view('mahasiswa.stupen', $data);
+
+    }
+    public function editstupen($id){
         $mhs = ModelSurat::find($id);
         $data = [
             'id' => $id,

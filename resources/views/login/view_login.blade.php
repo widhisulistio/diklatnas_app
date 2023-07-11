@@ -5,6 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Halaman Login</title>
+    <style>
+        body {
+            background-image: url("{{ asset('/') }}dist/img/background2.jpg");
+            background-size: cover;
+        }
+    </style>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -18,12 +24,12 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <!-- /.login-logo -->
-    <div class="card card-outline card-primary">
+    <div class="card card-outline card-primary" >
         <div class="card-header text-center">
-            <h1><strong>Login Diklat App</strong></h1>
+            <h1><strong>Si-Pandu</strong></h1>
         </div>
         <div class="card-body">
-            <p class="login-box-msg">Sign in to start your session</p>
+            <p class="login-box-msg" style="font-size: 13px">Sistem Informasi Pendidikan & Penelitian Terpadu</p>
 
             <form action="{{ url('login/proses') }}" method="post">
                 @csrf

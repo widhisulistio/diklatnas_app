@@ -33,7 +33,8 @@
             <div class="card-body">
                 <div class="col-md-12">
                     <div class="card card-primary">
-                        <form class="row g-3 ml-3 mr-3" enctype="multipart/form-data" method="POST" action="{{ '/mhs/update' }}">
+                        <form class="row g-3 ml-3 mr-3" enctype="multipart/form-data" method="POST" action="{{ '/surat/simpan' }}">
+                            @csrf
                             <input type="hidden" name="id" id="id" value="{{ $id }}">
                             <div class="col-md-6">
                                 <label for="nim" class="form-label">NIM</label>
@@ -76,7 +77,12 @@
                             </div>
                             <div class="col-md-3">
                                 <label for="nomor" class="form-label">Nomor Surat</label>
-                                <input type="text" class="form-control" id="nomor" name="nomor">
+                                <input type="text" class="form-control @error('nomor') is-invalid @enderror"  id="nomor" name="nomor" value="{{ old('nomor') }}">
+                                @error('nomor')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="col-md-3">
                                 <label for="sifat">Sifat Surat</label>
@@ -95,23 +101,48 @@
                             </div>
                             <div class="col-md-3">
                                 <label for="tanggal" class="form-label">Tanggal Surat</label>
-                                <input type="date" class="form-control" id="nomor" name="nomor">
+                                <input type="date" class="form-control @error('tanggal') is-invalid @enderror" id="tanggal" name="tanggal">
+                                @error('tanggal')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label for="yth" class="form-label">Tujuan Surat</label>
-                                <input type="text" class="form-control" id="yth" name="yth">
+                                <input type="text" class="form-control @error('yth') is-invalid @enderror" id="yth" name="yth" value="{{old('yth')}}">
+                                @error('yth')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label for="hal" class="form-label">Prihal Surat</label>
-                                <input type="text" class="form-control" id="hal" name="hal" >
+                                <input type="text" class="form-control @error('hal') is-invalid @enderror" id="hal" name="hal" value="{{ old('hal') }}">
+                                @error('hal')
+                                    <div class="invalid-feedback">
+                                        {{ $message}}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label for="kegiatan" class="form-label">Kegiatan</label>
-                                <input type="text" class="form-control" id="kegiatan" name="kegiatan">
+                                <input type="text" class="form-control @error('kegiatan') is-invalid @enderror" id="kegiatan" name="kegiatan" value="{{ old('kegiatan') }}">
+                                @error('kegiatan')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label for="judul" class="form-label">Judul Penelitian</label>
-                                <input type="text" class="form-control" id="judul" name="judul" >
+                                <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul" >
+                                @error('judul')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                             <div class="col-md-12 mt-3 mb-3">
                                 <button type="submit" class="btn btn-success">Simpan Permohonan</button>

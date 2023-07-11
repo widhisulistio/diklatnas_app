@@ -21,6 +21,7 @@ class Modelmhs extends Model
         'nim','namamhs','jk','tlpmhs','alamatmhs','institusimhs','jurusanmhs','jenjangmhs',
     ];
 
+
 //    protected $fillable = [
 //        'nim',
 //        'namamhs',

@@ -7,18 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
 
-class ModelSurat extends Model
+class ModelStupen extends Model
 {
     use HasFactory;
     use SoftDeletes;
     use Sortable;
 
-    protected $table = 'mahasiswa';
+    protected $table = 'stupen';
     protected $primaryKey ='id';
     public $timestamps = true;
 
     public $sortable =[
-        'nim','namamhs','jk','tlpmhs','alamatmhs','institusimhs','jurusanmhs','jenjangmhs',
+        'nomor','sifat','lampiran','yth','hal','nim','kegiatan','judul','tanggal',
     ];
 
 
