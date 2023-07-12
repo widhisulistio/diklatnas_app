@@ -73,11 +73,15 @@
                             <td>{{$d->lampiran}}</td>
                             <td>{{$d->yth }}</td>
                             <td>{{$d->hal}}</td>
-                            <td>{{$d->nim}}</td>
+                            <td>{{$d->namamhs}}</td>
                             <td>{{$d->kegiatan}}</td>
                             <td>{{$d->judul}}</td>
                             <td>{{$d->tanggal}}</td>
                             <td>
+                                <a href="/surat/stupen/{{ $d->id }}" class="dropdown-item">
+                                    <i class="fas fa-print"></i> Cetak
+                                </a>
+                            </td>
 
                         </tr>
                     @endforeach

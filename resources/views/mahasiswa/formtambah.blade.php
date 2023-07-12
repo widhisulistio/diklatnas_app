@@ -109,13 +109,16 @@
                                 <div class="form-group">
                                     <label for="jenjang">Jenjang</label>
                                     <select id="selectjenjang" name="jenjang" class="form-control">
-                                        <option value="DI">Diploma I</option>
-                                        <option value="DII">Diploma II</option>
-                                        <option value="DIII">Diploma III</option>
-                                        <option value="DIV">Sarjana Terapan</option>
-                                        <option value="S1">Sarjana</option>
-                                        <option value="S2">Magister</option>
-                                        <option value="S3">Doktoral</option>
+                                        <option value="SMA/SMK">SMA/SMK</option>
+                                        <option value="Diploma I">Diploma I</option>
+                                        <option value="Diploma II">Diploma II</option>
+                                        <option value="Diploma III<">Diploma III</option>
+                                        <option value="Sarjana Terapan">Sarjana Terapan</option>
+                                        <option value="Sarjana">Sarjana</option>
+                                        <option value="Magister">Magister</option>
+                                        <option value="Doktoral">Doktoral</option>
+                                        <option value="PPDS">PPDS</option>
+                                        <option value="Profesi">Profesi</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

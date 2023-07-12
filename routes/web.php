@@ -47,11 +47,14 @@ Route::group(['middleware' =>['auth']], function (){
             Route::get('/surat/index', 'index');
             Route::get('/surat/stupen/{id}', 'stupen');
             Route::post('/surat/simpan', 'simpanstupen');  //method post untuk menyimpan data
+
+
         });
     });
     Route::group(['middleware' =>['cekUserLogin:1']], function (){
         Route::controller(\App\Http\Controllers\Stupen::class)->group(function () {
             Route::get('/stupen/index', 'index');
+            Route::get('/stupen/edit/{id}', 'editstupen');
         });
     });
 });

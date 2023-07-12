@@ -27,7 +27,7 @@ class Surat extends Controller
 //          'dataMhs' => Modelsurat::sortable()->paginate(10)->onEachSide(2)->fragment('pesertadiklat'),
 //        ];
 //        perintah with itu sama juga membawa variabel dataMahasiwa
-        return view('mahasiswa.surat')->with([
+        return view('surat.surat')->with([
             'dataMhs' => $dataMahasiswa,
             'cari' => $cari,
         ]);
@@ -98,7 +98,7 @@ class Surat extends Controller
 
         //echo "Data Berhasil Tersimpan";
         $r->session()->flash("msg", "Data Mahasiswa $nim behasil Tersimpan!");
-        return redirect('/surat/index');
+        return redirect('/stupen/index');
 
     }
 
@@ -116,72 +116,7 @@ class Surat extends Controller
             'jenjang' => $mhs->jenjangmhs,
             'foto' => $mhs->fotomhs
         ];
-        return view('mahasiswa.stupen', $data);
-
-    }
-    public function editstupen($id){
-        $mhs = ModelSurat::find($id);
-        $data = [
-            'id' => $id,
-            'nim' => $mhs->nim,
-            'nama' => $mhs->namamhs,
-            'jk'=> $mhs->jk,
-            'tlp' => $mhs->tlpmhs,
-            'alamat' => $mhs->alamatmhs,
-            'institusi' => $mhs->institusimhs,
-            'jurusan' => $mhs->jurusanmhs,
-            'jenjang' => $mhs->jenjangmhs,
-            'foto' => $mhs->fotomhs
-        ];
-        return view('mahasiswa.stupen', $data);
-
-    }
-
-    public function update (Request $r){ //nama variabel $itu terserah mau dikasih nama apa
-        $id = $r->id;
-        $nim = $r->nim;
-        $nama = $r->nama;
-        $jk = $r->jk;
-        $tlp = $r->tlp;
-        $alamat = $r->alamat;
-        $institusi = $r->institusi;
-        $jurusan = $r->jurusan;
-        $jenjang = $r->jenjang;
-
-        if ($r->hasFile('foto')){
-            $path = $r->file('foto')->storeAs('uploads',time().'-'.$nim.'.'.$r->file('foto')->extension());
-        }else{
-            $path='';
-        }
-
-        $validateData = $r->validate([
-            'foto' => 'mimes:jpg,png,jpeg|image|max:1024',
-        ]);
-        ///dd($r);
-        //echo $id;
-        //exit();
-
-        $mhs = ModelSurat::find($id);
-        $pathFoto = $mhs->fotomhs;
-
-        if ($pathFoto !=null || $pathFoto!=''){
-            Storage::delete($pathFoto);
-        }
-
-        $mhs->nim = $nim;
-        $mhs->namamhs = $nama;
-        $mhs->jk = $jk;
-        $mhs->tlpmhs = $tlp;
-        $mhs->alamatmhs = $alamat;
-        $mhs->institusimhs = $institusi;
-        $mhs->jurusanmhs = $jurusan;
-        $mhs->jenjangmhs = $jenjang;
-        $mhs->fotomhs = $path;
-        $mhs->save();
-
-        //echo "Data Berhasil Tersimpan";
-        $r->session()->flash("msg", "Data Mahasiswa $nama behasil diupdate!");
-        return redirect('/mhs/index');
+        return view('surat.stupen ', $data);
 
     }
 
