@@ -99,7 +99,7 @@ class Stupen extends Controller
             'jurusan' => $cetakstupen->jurusanmhs,
             'jenjang' => $cetakstupen->jenjangmhs,
         ];
-        return view('surat.cetakstupen', $data);
+        return view('surat.printhasilstupen', $data);
     }
     public function update (Request $r){ //nama variabel $itu terserah mau dikasih nama apa
         $id = $r->id;
