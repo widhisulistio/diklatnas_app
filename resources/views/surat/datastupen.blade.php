@@ -78,7 +78,7 @@
                             <td>{{$d->judul}}</td>
                             <td>{{$d->tanggal}}</td>
                             <td>
-                                <a href="/surat/stupen/{{ $d->id }}" class="dropdown-item">
+                                <a href="/stupen/cetak/{{ $d->id }}" class="dropdown-item">
                                     <i class="fas fa-print"></i> Cetak
                                 </a>
                             </td>

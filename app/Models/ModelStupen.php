@@ -19,7 +19,7 @@ class ModelStupen extends Model
     public $timestamps = true;
 
     public $sortable =[
-        'nomor','sifat','lampiran','yth','hal','nim','kegiatan','judul','tanggal',
+        'id','nomor','sifat','lampiran','yth','hal','nim','kegiatan','judul','tanggal',
     ];
 
 

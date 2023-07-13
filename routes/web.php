@@ -55,6 +55,7 @@ Route::group(['middleware' =>['auth']], function (){
         Route::controller(\App\Http\Controllers\Stupen::class)->group(function () {
             Route::get('/stupen/index', 'index');
             Route::get('/stupen/edit/{id}', 'editstupen');
+            Route::get('/stupen/cetak/{id}', 'cetakstupen');
         });
     });
 });

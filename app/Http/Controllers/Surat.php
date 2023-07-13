@@ -95,10 +95,9 @@ class Surat extends Controller
         $stupen->judul = $judul;
         $stupen->tanggal = $tanggal;
         $stupen->save();
-
         //echo "Data Berhasil Tersimpan";
         $r->session()->flash("msg", "Data Mahasiswa $nim behasil Tersimpan!");
-        return redirect('/stupen/index');
+        return redirect('/stupen/edit/'.$stupen->id);
 
     }
 
