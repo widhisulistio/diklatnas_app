@@ -33,7 +33,7 @@
             <div class="card-body">
                 <div class="col-md-12">
                     <div class="card card-primary">
-                        <form class="row g-3 ml-3 mr-3" enctype="multipart/form-data" method="POST" action="{{ '/stupen/edit' }}">
+                        <form class="row g-3 ml-3 mr-3" enctype="multipart/form-data" method="POST" action="{{ '/stupen/update' }}">
                             @csrf
                             @method('PUT')
                             <input type="hidden" name="id" id="id" value="{{ $id }}">
@@ -78,18 +78,18 @@
                             </div>
                             <div class="col-md-3">
                                 <label for="nomor" class="form-label">Nomor Surat</label>
-                                <input type="text" class="form-control"  id="nomor" name="nomor" value="{{ $nomor }}" readonly>
+                                <input type="text" class="form-control"  id="nomor" name="nomor" value="{{ $nomor }}">
                             </div>
                             <div class="col-md-3">
                                 <label for="sifat">Sifat Surat</label>
-                                <select id="selectsifat" name="sifat" class="form-control" disabled>
+                                <select id="selectsifat" name="sifat" class="form-control" >
                                     <option value="Biasa"{{ $sifat =="Biasa" ? 'selected':'' }}>Biasa</option>
                                     <option value="Rahasia"{{ $sifat =="Rahasia" ? 'selected':'' }}>Rahasia</option>
                                 </select>
                             </div>
                             <div class="col-md-3">
                                 <label for="lampiran">Lampiran Surat</label>
-                                <select id="selectlampiran" name="lampiran" class="form-control" disabled>
+                                <select id="selectlampiran" name="lampiran" class="form-control">
                                     <option value="-">-</option>
                                     <option value="1 Bendel"{{ $lampiran =="1 Bendel" ? 'selected':'' }}>1 Bendel</option>
                                     <option value="2 Bendel"{{ $lampiran =="2 Bendel" ? 'selected':'' }}>2 Bendel</option>
@@ -97,27 +97,27 @@
                             </div>
                             <div class="col-md-3">
                                 <label for="tanggal" class="form-label">Tanggal Surat</label>
-                                <input type="date" class="form-control " id="tanggal" name="tanggal"value="{{ $tanggal }}" readonly>
+                                <input type="date" class="form-control " id="tanggal" name="tanggal"value="{{ $tanggal }}" >
                             </div>
                             <div class="col-md-6">
                                 <label for="yth" class="form-label">Tujuan Surat</label>
-                                <input type="text" class="form-control" id="yth" name="yth" value="{{ $yth }} " readonly>
+                                <input type="text" class="form-control" id="yth" name="yth" value="{{ $yth }}">
                             </div>
                             <div class="col-md-6">
                                 <label for="hal" class="form-label">Prihal Surat</label>
-                                <input type="text" class="form-control" id="hal" name="hal" value="{{ $hal }}" readonly>
+                                <input type="text" class="form-control" id="hal" name="hal" value="{{ $hal }}">
                             </div>
                             <div class="col-md-6">
                                 <label for="kegiatan" class="form-label">Kegiatan</label>
-                                <input type="text" class="form-control" id="kegiatan" name="kegiatan" value="{{ $kegiatan }}" readonly>
+                                <input type="text" class="form-control" id="kegiatan" name="kegiatan" value="{{ $kegiatan }}">
                             </div>
                             <div class="col-md-6">
                                 <label for="judul" class="form-label">Judul Penelitian</label>
-                                <input type="text" class="form-control " id="judul" name="judul" value="{{ $judul }}" readonly >
+                                <input type="text" class="form-control " id="judul" name="judul" value="{{ $judul }}" >
                             </div>
                             <div class="col-md-12 mt-3 mb-3">
-{{--                                <button type="submit" class="btn btn-success">Simpan Permohonan</button>--}}
-                                <a href="/stupen/cetak/{{ $id }}" class="btn btn-primary"> <i class="fas fa-print"></i> Cetak</a>
+                                <button type="submit" class="btn btn-success">Simpan Perubahan</button>
+{{--                                <a href="/stupen/cetak/{{ $id }}" class="btn btn-primary"> <i class="fas fa-print"></i> Cetak</a>--}}
                             </div>
                         </form>
                     </div>

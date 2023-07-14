@@ -31,7 +31,7 @@ with font-awesome or any other icon font library -->
         </li>
         <li class="nav-item">
             <a href="{{ url('stupen/index') }}" class="nav-link">
-                <i class="nav-icon fas fa-envelope-open-text"></i>
+                <i class="nav-icon fas fa-database"></i>
                 <p>
                     Data Stupen
                     <i class="right fas fa-angle-right"></i>

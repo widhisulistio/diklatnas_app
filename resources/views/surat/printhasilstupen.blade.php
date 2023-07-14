@@ -69,7 +69,7 @@
     </div>
 
     <div class="date">
-        <p>Kulonprogo: <span id="currentDate"></span></p>
+        <p>Kulonprogo: {{ $tanggal }} </p>
     </div>
 
     <div class="content">

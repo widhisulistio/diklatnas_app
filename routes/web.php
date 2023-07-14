@@ -36,7 +36,7 @@ Route::group(['middleware' =>['auth']], function (){
            Route::post('/mhs/simpan', 'save');  //method post untuk menyimpan data
            Route::get('/mhs/edit/{id}', 'edit');
            Route::put('/mhs/update', 'update');
-           Route::delete('mhs/hapus/{id}', 'hapus');
+           Route::delete('/mhs/hapus/{id}', 'hapus');
 
            Route::get('/mhs/restore/{id}', 'restore');
            Route::delete('mhs/forceDelete/{id}', 'forceDelete');
@@ -55,7 +55,10 @@ Route::group(['middleware' =>['auth']], function (){
         Route::controller(\App\Http\Controllers\Stupen::class)->group(function () {
             Route::get('/stupen/index', 'index');
             Route::get('/stupen/edit/{id}', 'editstupen');
+            Route::get('/stupen/editdua/{id}', 'editstupendua');
             Route::get('/stupen/cetak/{id}', 'cetakstupen');
+            Route::put('/stupen/update', 'update');
+            Route::delete('/stupen/hapus/{id}', 'hapus');
         });
     });
 });

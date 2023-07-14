@@ -79,6 +79,16 @@
                                 <a href="/stupen/cetak/{{ $d->id }}" class="dropdown-item">
                                     <i class="fas fa-print"></i> <b style="color: #0c84ff">Cetak</b>
                                 </a>
+                                <a href="/stupen/editdua/{{ $d->id }}" class="dropdown-item">
+                                    <i class="fas fa-pencil-alt"></i> <b style="color: #0c84ff">Edit</b>
+                                </a>
+                                <form method="POST" action="/stupen/hapus/{{ $d->id }}" style="display: inline;" onsubmit="return hapusData()">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="fas fa-trash btn-outline-danger ml-2" type="submit">
+                                        Hapus
+                                    </button>
+                                </form>
                             </td>
 
                         </tr>
