@@ -47,14 +47,9 @@
                     <tr>
                         <th>No</th>
                         <th>@sortablelink('nomor','Nomor')</th>
-                        <th>@sortablelink('sifat','Sifat Surat')</th>
-                        <th>@sortablelink('lampiran','Lampiran')</th>
-                        <th>@sortablelink('yth','Tujuan Surat')</th>
-                        <th>@sortablelink('hal','Prihal')</th>
                         <th>@sortablelink('nim','NIM')</th>
-                        <th>@sortablelink('kegiatan','Kegiatan')</th>
-                        <th>@sortablelink('judul','Judul')</th>
-                        <th>@sortablelink('tanggal','Tanggal Surat')</th>
+                        <th>Surat</th>
+
                         <th>Aksi</th>
                     </tr>
 
@@ -69,17 +64,20 @@
                             {{--                            <td>{{ $loop->iteration }}</td>--}}
                             <td>{{ $no++ }}</td>
                             <td>{{$d->nomor}}</td>
-                            <td>{{$d->sifat}}</td>
-                            <td>{{$d->lampiran}}</td>
-                            <td>{{$d->yth }}</td>
-                            <td>{{$d->hal}}</td>
-                            <td>{{$d->namamhs}}</td>
-                            <td>{{$d->kegiatan}}</td>
-                            <td>{{$d->judul}}</td>
-                            <td>{{$d->tanggal}}</td>
+                            <td>{{$d->namamhs}} </td>
+                            <td><em><b>Sifat:</b> {{$d->sifat}} <br>
+                                <b>Lampiran:</b> {{$d->lampiran}} <br>
+                                <b>Tujuan Surat:</b> {{$d->yth }} <br>
+                                <b>Hal:</b> {{$d->hal}} <br>
+                                <b>Kegiatan:</b> {{$d->kegiatan}} <br>
+                                <b>Judul:</b> {{$d->judul}} <br>
+                                <b>Tanggal Surat:</b> {{$d->tanggal}}
+                                </em>
+                            </td>
+
                             <td>
                                 <a href="/stupen/cetak/{{ $d->id }}" class="dropdown-item">
-                                    <i class="fas fa-print"></i> Cetak
+                                    <i class="fas fa-print"></i> <b style="color: #0c84ff">Cetak</b>
                                 </a>
                             </td>
 

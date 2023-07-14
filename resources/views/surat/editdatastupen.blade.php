@@ -117,7 +117,7 @@
                             </div>
                             <div class="col-md-12 mt-3 mb-3">
                                 <button type="submit" class="btn btn-success">Simpan Permohonan</button>
-                                <button type="submit" class="btn btn-success">Cetak</button>
+                                <a href="/stupen/cetak/{{ $id }}" class="btn btn-primary"> <i class="fas fa-print"></i> Cetak</a>
                             </div>
                         </form>
                     </div>
