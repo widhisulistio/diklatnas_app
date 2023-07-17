@@ -75,14 +75,12 @@
     <script>
         $(document).ready(function() {
             $("#selectmhs").select2({
-                placeholder: 'Pilih Mahasiswa',
+                placeholder:'Pilih Mhs',
                 ajax: {
-                    url: "{{ route('select.mhs') }}",
-                    processResults: function({
-                                                 data
-                                             }) {
+                    url: "{{route('select.mhs')}}",
+                    processResults: function({data}){
                         return {
-                            results: $.map(data, function(item) {
+                            results: $.map(data, function(item){
                                 return {
                                     id: item.id,
                                     text: item.namamhs
@@ -93,8 +91,30 @@
                 }
             });
 
+
         });
     </script>
+{{--<script type="text/javascript">--}}
+{{--    $('#selectmhs').select2({--}}
+{{--        placeholder: 'Select MHS',--}}
+{{--        ajax: {--}}
+{{--            url: '/ajax-autocomplete-search',--}}
+{{--            dataType: 'json',--}}
+{{--            delay: 250,--}}
+{{--            processResults: function (data) {--}}
+{{--                return {--}}
+{{--                    results: $.map(data, function (item) {--}}
+{{--                        return {--}}
+{{--                            text: item.namamhs,--}}
+{{--                            id: item.id--}}
+{{--                        }--}}
+{{--                    })--}}
+{{--                };--}}
+{{--            },--}}
+{{--            cache: true--}}
+{{--        }--}}
+{{--    });--}}
+{{--</script>--}}
 @endsection
 
 

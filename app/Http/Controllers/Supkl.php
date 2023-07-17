@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Modelmhs;
+use App\Models\ModelSupkl;
 use http\Env\Response;
 use Illuminate\Http\Request;
 
@@ -14,10 +15,11 @@ class Supkl extends Controller
         return view('surat.tambahsupkl');
     }
 
-    public function selectmhs()
+    public function selectmhs(Request $request)
     {
-        $data = Modelmhs::where('namamhs', 'LIKE', '%' . request('q') . '%');
+        $data = ModelSupkl::where('namamhs', 'LIKE', '%' . request('q') . '%');
 
         return response()->json($data);
+
     }
 }
