@@ -12,6 +12,8 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('/') }}dist/css/adminlte.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -117,15 +119,19 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <!-- jQuery -->
 <script src="{{ asset('/') }}plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
+{{--select2--}}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+{{-------}}
 <script src="{{ asset('/') }}plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('/') }}dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 {{--<script src="{{ asset('/') }}dist/js/demo.js"></script>--}}
-
+@yield('script')
 </body>
 </html>

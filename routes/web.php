@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Mhs;
+use App\Http\Controllers\Surat;
+use App\Http\Controllers\Stupen;
+use App\Http\Controllers\Supkl;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +23,8 @@ use Illuminate\Support\Facades\Route;
 
 //Route::get('/',[\App\Http\Controllers\LoginController::class, 'index']);
 //Route::get('login',[\App\Http\Controllers\LoginController::class,'index'])->name('login');
+
+
 Route::controller(\App\Http\Controllers\LoginController::class)->group(function(){
     Route::get('/', 'index');
     Route::get('login','index')->name('login'); //jika ada yg akses yg metod login maka diarahkan ke index
@@ -43,7 +48,7 @@ Route::group(['middleware' =>['auth']], function (){
        });
    });
     Route::group(['middleware' =>['cekUserLogin:1']], function (){
-        Route::controller(\App\Http\Controllers\Surat::class)->group(function () {
+        Route::controller(Surat::class)->group(function () {
             Route::get('/surat/index', 'index');
             Route::get('/surat/stupen/{id}', 'stupen');
             Route::post('/surat/simpan', 'simpanstupen');  //method post untuk menyimpan data
@@ -52,13 +57,19 @@ Route::group(['middleware' =>['auth']], function (){
         });
     });
     Route::group(['middleware' =>['cekUserLogin:1']], function (){
-        Route::controller(\App\Http\Controllers\Stupen::class)->group(function () {
+        Route::controller(Stupen::class)->group(function () {
             Route::get('/stupen/index', 'index');
             Route::get('/stupen/edit/{id}', 'editstupen');
             Route::get('/stupen/editdua/{id}', 'editstupendua');
             Route::get('/stupen/cetak/{id}', 'cetakstupen');
             Route::put('/stupen/update', 'update');
             Route::delete('/stupen/hapus/{id}', 'hapus');
+        });
+    });
+    Route::group(['middleware' =>['cekUserLogin:1']], function (){
+        Route::controller(Supkl::class)->group(function () {
+            Route::get('/supkl/index', 'index');
+            Route::get('selectmhs', 'selectmhs')->name('select.mhs');
         });
     });
 });

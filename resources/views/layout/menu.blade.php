@@ -30,6 +30,15 @@ with font-awesome or any other icon font library -->
             </a>
         </li>
         <li class="nav-item">
+            <a href="{{ url('supkl/index') }}" class="nav-link">
+                <i class="nav-icon fas fa-envelope-open-text"></i>
+                <p>
+                    Ijin PKL
+                    <i class="right fas fa-angle-right"></i>
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="{{ url('stupen/index') }}" class="nav-link">
                 <i class="nav-icon fas fa-database"></i>
                 <p>
@@ -38,5 +47,6 @@ with font-awesome or any other icon font library -->
                 </p>
             </a>
         </li>
+        
     </ul>
 </nav>
