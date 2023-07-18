@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="selectmhs">Pilih Mahasiswa</label>
-                                    <select id="selectmhs" name="namamhs" class="form-control">
+                                    <select id="selectmhs" name="namamhs[]" class="form-control" multiple="true">
 
                                     </select>
                                 </div>
@@ -75,15 +75,18 @@
     <script>
         $(document).ready(function() {
             $("#selectmhs").select2({
-                placeholder:'Pilih Mhs',
+                placeholder:'Pilih Mahasiswa',
+                multiple: true,
                 ajax: {
                     url: "{{route('select.mhs')}}",
-                    processResults: function({data}){
+                    processResults: function(data){
+
+                        // console.log(data);
                         return {
                             results: $.map(data, function(item){
                                 return {
                                     id: item.id,
-                                    text: item.namamhs
+                                    text: item.namamhs,
                                 }
                             })
                         }

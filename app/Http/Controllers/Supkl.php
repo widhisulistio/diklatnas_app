@@ -15,9 +15,10 @@ class Supkl extends Controller
         return view('surat.tambahsupkl');
     }
 
-    public function selectmhs(Request $request)
+    public function selectmhs()
     {
-        $data = ModelSupkl::where('namamhs', 'LIKE', '%' . request('q') . '%');
+//        $data = ModelSupkl::where('namamhs', 'LIKE', '%' . request('q') . '%');
+        $data = Modelmhs::select('id', 'namamhs','nim')->get();
 
         return response()->json($data);
 
