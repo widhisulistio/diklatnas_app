@@ -11,7 +11,12 @@
   <link rel="stylesheet" href="{{ asset('/') }}plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('/') }}dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+
+
 
 
 </head>
@@ -120,11 +125,17 @@
 </div>
 <!-- ./wrapper -->
 
+
 <!-- jQuery -->
 <script src="{{ asset('/') }}plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
 {{--select2--}}
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 
 {{-------}}
 <script src="{{ asset('/') }}plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -132,6 +143,8 @@
 <script src="{{ asset('/') }}dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 {{--<script src="{{ asset('/') }}dist/js/demo.js"></script>--}}
+{{--datepicker--}}
+
 @yield('script')
 </body>
 </html>

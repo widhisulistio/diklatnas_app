@@ -55,9 +55,21 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="selectmhs">Pilih Mahasiswa</label>
-                                    <select id="selectmhs" name="namamhs[]" class="form-control" multiple="true">
+                                    <select id="selectmhs" name="namamhs[]" class=" form-control" multiple="true">
 
                                     </select>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label for="from">Tanggal Mulai</label>
+                                            <input type="text" id="from" name="from" class="form-control">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="to">Tanggal Selesai</label>
+                                            <input type="text" id="to" name="to" class="form-control">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-success">Simpan</button>
@@ -76,6 +88,8 @@
         $(document).ready(function() {
             $("#selectmhs").select2({
                 placeholder:'Pilih Mahasiswa',
+                theme: 'classic',
+                // tags: true,
                 multiple: true,
                 ajax: {
                     url: "{{route('select.mhs')}}",
@@ -97,6 +111,46 @@
 
         });
     </script>
+    <script>
+        $( function() {
+            var dateFormat = "mm/dd/yy",
+                from = $( "#from" )
+                    .datepicker({
+                        defaultDate: "+1w",
+                        changeMonth: true,
+                        numberOfMonths: 3
+                    })
+                    .on( "change", function() {
+                        to.datepicker( "option", "minDate", getDate( this ) );
+                    }),
+                to = $( "#to" ).datepicker({
+                    defaultDate: "+1w",
+                    changeMonth: true,
+                    numberOfMonths: 3
+                })
+                    .on( "change", function() {
+                        from.datepicker( "option", "maxDate", getDate( this ) );
+                    });
+
+            function getDate( element ) {
+                var date;
+                try {
+                    date = $.datepicker.parseDate( dateFormat, element.value );
+                } catch( error ) {
+                    date = null;
+                }
+
+                return date;
+            }
+        } )
+    </script>
+
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+        } );
+    </script>
+
 {{--<script type="text/javascript">--}}
 {{--    $('#selectmhs').select2({--}}
 {{--        placeholder: 'Select MHS',--}}
