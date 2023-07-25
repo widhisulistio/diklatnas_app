@@ -70,6 +70,7 @@ Route::group(['middleware' =>['auth']], function (){
         Route::controller(Supkl::class)->group(function () {
             Route::get('/supkl/index', 'index');
             Route::get('selectmhs', 'selectmhs')->name('select.mhs');
+            Route::post('/supkl/simpan', 'save');  //method post untuk menyimpan data
         });
     });
 });
